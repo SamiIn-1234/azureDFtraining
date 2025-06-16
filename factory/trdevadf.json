@@ -1,0 +1,9 @@
+{
+	"name": "trdevadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5d822cea-8f2b-4ea2-922e-58170b7368f7",
+		"tenantId": "80d5161b-5102-4fe1-9b94-cb07b20359cd"
+	}
+}
