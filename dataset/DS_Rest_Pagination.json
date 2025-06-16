@@ -1,0 +1,13 @@
+{
+	"name": "DS_Rest_Pagination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Rest_Pagination",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

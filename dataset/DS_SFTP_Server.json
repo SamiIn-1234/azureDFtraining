@@ -1,0 +1,19 @@
+{
+	"name": "DS_SFTP_Server",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SFTP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": "KeyGenerator.png",
+				"folderPath": "/pub/example"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

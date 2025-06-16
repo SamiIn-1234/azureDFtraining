@@ -1,0 +1,16 @@
+{
+	"name": "DS_SQL_Dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_DB_Dynamic",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"userName": "Abhilash"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

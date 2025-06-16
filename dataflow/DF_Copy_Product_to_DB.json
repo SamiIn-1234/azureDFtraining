@@ -1,0 +1,104 @@
+{
+	"name": "DF_Copy_Product_to_DB",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Product_CSV_File",
+						"type": "DatasetReference"
+					},
+					"name": "inputProductFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Dataflow_CSV",
+						"type": "DatasetReference"
+					},
+					"name": "Sinktoadf",
+					"rejectedDataLinkedService": {
+						"referenceName": "ADLS_LS",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "filterproduct",
+					"description": "Filter Product ID greater than 800"
+				},
+				{
+					"name": "addcolorflag",
+					"description": "adding color flag derived column"
+				},
+				{
+					"name": "Selectrequiredcolumns"
+				},
+				{
+					"name": "findmaximum"
+				},
+				{
+					"name": "RemoveNull"
+				},
+				{
+					"name": "SortPrice"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ProductID as short,",
+				"          Name as string,",
+				"          ProductNumber as string,",
+				"          Color as string,",
+				"          StandardCost as double,",
+				"          ListPrice as double,",
+				"          Size as string,",
+				"          Weight as double,",
+				"          ProductCategoryID as short,",
+				"          ProductModelID as short,",
+				"          SellStartDate as string,",
+				"          SellEndDate as string,",
+				"          DiscontinuedDate as string,",
+				"          ThumbNailPhoto as string,",
+				"          ThumbnailPhotoFileName as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> inputProductFile",
+				"inputProductFile filter(ProductID > 800) ~> filterproduct",
+				"filterproduct derive(isColorFlag = equalsIgnoreCase(Color,'Black')) ~> addcolorflag",
+				"addcolorflag select(mapColumn(",
+				"          ProdID = ProductID,",
+				"          Name,",
+				"          ProductNumber,",
+				"          Color,",
+				"          StandardCost,",
+				"          ListPrice,",
+				"          Size,",
+				"          Weight,",
+				"          ModifiedDate,",
+				"          isColorFlag",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Selectrequiredcolumns",
+				"Selectrequiredcolumns aggregate(groupBy(Color),",
+				"     HighestPrice = max(ListPrice),",
+				"          ProductCount = count(ProdID)) ~> findmaximum",
+				"findmaximum filter(!isNull(Color)) ~> RemoveNull",
+				"RemoveNull sort(desc(HighestPrice, true)) ~> SortPrice",
+				"SortPrice sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Sinktoadf"
+			]
+		}
+	}
+}
