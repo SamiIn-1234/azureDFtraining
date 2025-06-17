@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "file.parquet",
+				"folderPath": "data",
 				"fileSystem": "destination"
 			},
 			"compressionCodec": "snappy"
