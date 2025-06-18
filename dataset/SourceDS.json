@@ -19,11 +19,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Login email;Identifier;First name;Last name",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
