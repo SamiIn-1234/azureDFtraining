@@ -33,7 +33,8 @@
 							"copyBehavior": "PreserveHierarchy"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"validateDataConsistency": false
 				},
 				"inputs": [
 					{
