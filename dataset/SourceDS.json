@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "email.csv",
 				"folderPath": "data",
 				"fileSystem": "source"
 			},
