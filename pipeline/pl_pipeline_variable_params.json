@@ -1,6 +1,53 @@
 {
 	"name": "pl_pipeline_variable_params",
 	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "addvar",
+					"value": 3
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "addvar",
+					"value": 5
+				}
+			}
+		],
+		"parameters": {
+			"add": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"addvar": {
+				"type": "Integer"
+			}
+		},
 		"folder": {
 			"name": "Tutorial 1"
 		},
