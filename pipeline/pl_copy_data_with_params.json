@@ -28,8 +28,6 @@
 								"value": "@utcNow()",
 								"type": "Expression"
 							},
-							"wildcardFolderPath": "data/singlefile",
-							"wildcardFileName": "*.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -59,13 +57,26 @@
 				"inputs": [
 					{
 						"referenceName": "SourceDswithParams",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SourcePath": {
+								"value": "@pipeline().parameters.SourcePath",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "DestinationDsWithParams",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"DestinationPath": {
+								"value": "@pipeline().parameters.DestinationPath",
+								"type": "Expression"
+							},
+							"FileName": "file.parquet"
+						}
 					}
 				]
 			}
