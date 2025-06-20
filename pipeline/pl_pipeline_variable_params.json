@@ -46,6 +46,9 @@
 		"variables": {
 			"addvar": {
 				"type": "Integer"
+			},
+			"Status": {
+				"type": "String"
 			}
 		},
 		"folder": {
