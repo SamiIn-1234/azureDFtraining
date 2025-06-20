@@ -1,0 +1,37 @@
+{
+	"name": "pl_pipeline_chaining",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_copy_data_with_params",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"SourcePath": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"SourcePath": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Tutorial 1"
+		},
+		"annotations": []
+	}
+}
