@@ -58,18 +58,26 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDS",
+						"referenceName": "SourceDswithParams",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Destination_DS",
+						"referenceName": "DestinationDsWithParams",
 						"type": "DatasetReference"
 					}
 				]
 			}
 		],
+		"parameters": {
+			"SourcePath": {
+				"type": "string"
+			},
+			"DestinationPath": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Tutorial 1"
 		},
