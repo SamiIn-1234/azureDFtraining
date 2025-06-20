@@ -62,7 +62,8 @@
 							"SourcePath": {
 								"value": "@pipeline().parameters.SourcePath",
 								"type": "Expression"
-							}
+							},
+							"FileName": "email.csv"
 						}
 					}
 				],
