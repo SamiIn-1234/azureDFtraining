@@ -5,7 +5,14 @@
 			{
 				"name": "Execute Pipeline1",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"secureInput": false
 				},
@@ -15,7 +22,34 @@
 						"referenceName": "pl_copy_data_with_params",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"SourcePath": {
+							"value": "@pipeline().parameters.SourcePath",
+							"type": "Expression"
+						},
+						"DestinationPath": {
+							"value": "@pipeline().parameters.SourcePath",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "SourcePath",
+					"value": {
+						"value": "abc",
+						"type": "Expression"
+					}
 				}
 			}
 		],
