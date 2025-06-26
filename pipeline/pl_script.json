@@ -21,8 +21,16 @@
 				"typeProperties": {
 					"scripts": [
 						{
+							"parameters": [
+								{
+									"name": "City",
+									"type": "String",
+									"value": "New York",
+									"direction": "Input"
+								}
+							],
 							"type": "Query",
-							"text": "SELECT CustomerKey, CustomerAlternateKey, CustomerName, CustomerCity, CustomerState, CustomerCountry\nFROM trnsqldb.dbo.DimCustomer;"
+							"text": "update DimCustomer\nset CustomerState = 'TX'\nwhere CustomerCity= @City"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
